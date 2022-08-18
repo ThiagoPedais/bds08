@@ -1,0 +1,21 @@
+.navbar-container {
+    padding: 25px;
+}
+
+.logo {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+}
+
+@media (min-width: 576px) {
+    .navbar-container {        
+        padding: 30px 30px 30px 40px;
+    }
+
+    .logo {        
+        font-size: 30px;        
+    }
+}

@@ -1,0 +1,27 @@
+.filter-container {
+    margin-top: 10px;
+}
+
+.filter-content {
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 130px;
+    padding: 10px;
+}
+
+.filter-select {
+    background-color: #FFF;
+}
+
+
+@media (min-width: 576px) {
+    .filter-content {
+        justify-content: flex-start;
+    }
+
+    .filter-select {
+        width: 270px;
+    }
+}

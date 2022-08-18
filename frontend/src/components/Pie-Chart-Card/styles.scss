@@ -1,0 +1,41 @@
+.pie-chart-card {    
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.valueTotal-container {
+    padding: 40px 50px 73px 15px;
+}
+
+.valueTotal {    
+    font-style: normal;
+    font-weight: 700;
+    font-size: 33px;
+    line-height: 41px;
+    display: flex;
+    align-items: center;
+    color: #334AC4;
+}
+
+.salesTotal {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    color: #8D8D8D;
+}
+
+@media (min-width: 960px) {
+    .pie-chart-card {    
+        display: flex;
+        justify-content: space-between;
+        padding-right: 100px;
+    }
+    .valueTotal-container {
+        display: flex;
+        justify-content:center;
+        align-items: center;
+    }
+}
