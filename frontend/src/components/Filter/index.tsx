@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import ReactSelect from 'react-select';
-// import Select from 'react-select';
-import { FilterData, Gender, Store, Stores } from '../../types';
+import { FilterData, Store } from '../../types';
 import { makeRequest } from '../../utils/request';
 import './styles.scss';
 
@@ -11,55 +10,38 @@ type Props = {
 }
 
 export default function Fitler({ onFilterChange }: Props) {
-    const options = [
-        { value: 'chocolate', label: 'Chocolate' },
-        { value: 'strawberry', label: 'Strawberry' },
-        { value: 'vanilla', label: 'Vanilla' }
-      ]
 
-    const [store, setStore] = useState<Stores>();
-    const [allStore, setAllStores] = useState<Store[]>();
+
     const [selectStore, setSelectStore] = useState<Store[]>([]);
 
-    useEffect(() => {
+    const getStores = useCallback(() => {
         makeRequest
-            .get('/stores')
-            .then(res => {
-                setSelectStore(res.data)
-                console.log(res.data)
-            });
-    }, []);
+        .get('/stores')
+        .then((response) => {
+            setSelectStore(response.data);
+        });
+      }, []);
 
-    const onChangeStore = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const selectedStore = event.target.value as Stores;
+    useEffect(() => {
+        getStores();
+    }, [getStores]);
 
-        setStore(selectedStore);
+    const handleChangeStore = (value?: Store) => {
+        const selectedStore = value as Store;
         console.log(selectedStore);
-        onFilterChange({ stores: selectedStore });
-    }
+        onFilterChange({ store: selectedStore });
+      };
 
 
     return (
         <div className="container filter-container">
             <div className="base-card filter-content">
-                {/* <select className="form-select filter-select" value={store} onChange={onChangeStore}>
-                    <option value="">Selecione uma loja</option>
-                    {
-                        allStore?.map(stores => (
-                            <option key={stores.id} value={stores.id}>{stores.name}</option>
-                        ))                        
-                    }
-                    <option value="Araguari">Araguari</option>
-                    <option value="Ituiutaba">Ituiutaba</option>
-                    <option value="Uberaba">Uberaba</option>
-                    <option value="Uberlândia">Uberlândia</option>
-                </select> */}
-
                 <ReactSelect 
                     options={selectStore}
                     classNamePrefix="filter-select"
                     getOptionLabel={(store: Store) => store.name}
                     getOptionValue={(store: Store) => String(store.id)}
+                    onChange={(value) => handleChangeStore(value as Store)}
                 />
             </div>
         </div>
