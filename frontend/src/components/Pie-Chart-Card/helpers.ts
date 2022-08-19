@@ -74,7 +74,7 @@ export const buildChartSeries = (salesByDate: SalesByGender[] = []) => {
     x: gender,
     y: sum
   }));
-};
+}; 
 
 export const sumSalesByDate = (salesByDate: SalesByGender[] = []) => {
   return salesByDate.reduce((previousValue, currentValue) => {
